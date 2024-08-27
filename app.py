@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify, send_from_directory
 import os
 import json
 from uuid import uuid4
+import subprocess
+import threading
 
 
 app = Flask(__name__)
@@ -13,10 +15,36 @@ RUNS_DIR = "runs"
 os.makedirs(RUNS_DIR, exist_ok=True)
 
 
+def _start_test_and_logging(probe, job_id):
+    logfile_name = f'{job_id}_output.log'  
+    logfile_path = os.path.join(RUNS_DIR, logfile_name)
+
+    # Open the logfile in write mode
+    with open(logfile_path, 'w', encoding='utf-8') as logfile:
+        process = subprocess.Popen(
+            f'python -m garak --model_type rest --probes {probe} -G {job_id}_config.json --config garak_config.yaml --report_prefix {job_id}',
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            shell=True,
+            encoding='utf-8',
+            errors='replace'
+        )
+
+        while True:
+            realtime_output = process.stdout.readline()
+
+            if realtime_output == '' and process.poll() is not None:
+                break
+
+            if realtime_output:
+                print(realtime_output.strip(), flush=True)  # Print to console
+                logfile.write(realtime_output)  # Write to logfile
+                logfile.flush()  # Ensure the output is written to the file immediately
+
+
 @app.route("/")
 def home():
 	return "hello world"
-
 
 @app.route('/start_test', methods=['POST'])
 def start_test():
@@ -53,9 +81,14 @@ def start_test():
 
     with open(DB_FILE_PATH, 'w') as ff:
         json.dump(data, ff, indent=2)
-        
+    
+    # Step 3: Start a test using garak with the 'probe' and 'config_json'
+    # Run the process in a separate thread
+    thread = threading.Thread(target=_start_test_and_logging, args=(probe, job_id))
+    thread.start()
+
     # Step 4: Return a response saying "test started"
-    return jsonify({"message": "test started"}), 200
+    return jsonify({"message": "test started", "job_id": job_id}), 200
 
 @app.route('/get_file/<filename>', methods=['GET'])
 def get_file(folder_name, filename):
