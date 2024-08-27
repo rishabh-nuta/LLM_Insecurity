@@ -1,0 +1,20 @@
+[
+  {
+    "job_id": "bda59796-3ee7-41f5-9264-c068f636c3d7",
+    "probe": "malwaregen",
+    "config_json_path": "data/bda59796-3ee7-41f5-9264-c068f636c3d7_config.json",
+    "results_file_path": "runs/bda59796-3ee7-41f5-9264-c068f636c3d7.report.jsonl",
+    "log_file_path": "runs/bda59796-3ee7-41f5-9264-c068f636c3d7.log",
+    "total_prompts": 100,
+    "passed_prompts": 70
+  },
+  {
+    "job_id": "3ea3b2a7-18ab-4f6b-be18-0926dc0db77d",
+    "probe": "malwaregen2",
+    "config_json_path": "data/3ea3b2a7-18ab-4f6b-be18-0926dc0db77d_config.json",
+    "results_file_path": "runs/3ea3b2a7-18ab-4f6b-be18-0926dc0db77d.report.jsonl",
+    "log_file_path": "runs/3ea3b2a7-18ab-4f6b-be18-0926dc0db77d.log",
+    "total_prompts": 100,
+    "passed_prompts": 70
+  }
+]
