@@ -34,5 +34,5 @@ plugins:
 reporting:
   report_prefix:
   taxonomy:
-  report_dir: /Users/himanshu.sharma1/nutanix/llmInsecurity/runs
+  report_dir: /Users/himanshu.sharma1/nutanix/llmInsecurity/LLM_Insecurity/runs
   show_100_pass_modules: true
