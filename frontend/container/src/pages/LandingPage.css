@@ -1,0 +1,19 @@
+.config-box:hover {
+  border: 2px solid #9aa5b5;
+  cursor: grab;
+}
+
+.config-box {
+  background-color: #f2f4f6;
+  padding: 20px !important;
+  border-radius: 10px;
+  width: 250px !important;
+}
+
+.dataset-box {
+  background-color: #f2f4f6;
+  padding: 20px !important;
+  border-radius: 10px;
+  width: 300px !important;
+  height: 170px;
+}

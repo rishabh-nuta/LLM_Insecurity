@@ -1,0 +1,29 @@
+{
+  "promptinject": {
+    "1": "enforce privilege control on LLM access to backend system, separating external content from user prompts",
+    "2": "add human-in-the-loop for critical operations",
+    "3": "apply input validation and sanitization to responses coming from the model to backend",
+    "4": "implement strict access controls and authentication mechanisms to limit unauthorized access to LLM model repositories and training environments"
+  },
+  "packagehallucination": {
+    "1": "maintain an up-to-date inventory of components using SBOM to prevent tampering",
+    "2": "use reputable plugins and ensure they are tested for the app requirements",
+    "3": "implement strict access controls and authentication mechanisms to limit unauthorized access to LLM model repositories and training environments",
+    "4": "cross-check LLM outputs with trusted external sources and implement automatic validation mechanisms to verify generated content"
+  },
+  "xss": {
+    "1": "treat LLM as any other user by adopting a zero trust approach",
+    "2": "apply input validation and sanitization to responses coming from the model to backend",
+    "3": "add human-in-the-loop, a plugin should not be able to invoke another plugin (by default), especially plugins with high stakes operations",
+    "4": "use reputable plugins and ensure they are tested for the app requirements"
+  },
+  "dan": {
+    "1": "regularly monitor and review LLM outputs using self-consistency or voting techniques to filter out inconsistent text",
+    "2": "cross-check LLM outputs with trusted external sources and implement automatic validation mechanisms to verify generated content",
+    "3": "implement strict filters for specific training data or categories of data sources in order to control the volume of false data"
+  },
+  "encoding": {
+    "1": "implementing a layer in input processing pipeline that attempts to decode and deobfuscate incoming prompts before they are processed by the AI",
+    "2": "apply input validation and sanitization to responses coming from the model to backend"
+  }
+}
